@@ -7,11 +7,16 @@ The process for statistical analysis used not published software, but codes insi
 3.	Multi-Dimensional Scaling for graphical representation of distances
 4.	Analysis of Molecular Variance (AMOVA) for SNP’s data.
 5.	Building a Core subset using the D-Method: classification (clustering), selecting the appropriate number of groups proportional to the diversity per group, building one thousand of “candidate Cores” and  selecting the most diverse of them to be the “core subset”.
-Code for stages 1, 3, 4 are usual R scripts (read/transform or create new variables/write), and even being necessary stages are not the central scripts on which our results are based, stages 2 (particularly the Modified Roger Distance, mrd) and 5 (applying the D-method for building Core Subsets) which imply a classification are attached to this repository. Besides we included real data if reviewers wish test the scripts. Upon request we are available to send  the scripts associated with all the process 
+
+Code for stages 1, 3, 4 are usual R scripts (read/transform or create new variables/write), and even being necessary stages are not the central scripts on which our results are based, stages 2 (particularly the Modified Roger Distance, mrd) and 5 (applying the D-method for building Core Subsets) which imply a classification are attached to this repository. Besides we included real data if reviewers wish test the scripts. Upon request we are available to send  the scripts associated with all the process.
+
 STAGE 2.
 For stage 2 we used a “small” dataset, frF1F2.RData, containing allele frequencies from 4403 Wild Relative accessions and 112562 alleles, we used that data to apply the scripts calculating the  mrd genetic distance. There are three scripts to be run in the presented sequence:
+
 01-SNPparallelMRDdistV7.R: starts reading the frequencies file and ends writing15 R-binary files (vectors) mrd2Vec_1_1.RData to mrd2Vec_4_5.RData containing squared mrd distances between all pair of accessions grouped in five sets (four of 1K and one of 403 accessions, respectively) to split and make possible the calculus in a parallel process. Results are in the armrd2Vec.tar file.
+
 02-mrdVec.R: joins the 15 mentioned files and create a single vector containing the 9,691,003 distances between all pair of accessions (spuared root of mrd^2 mentioned distances). The process is a parallel and quick one. The result is in the R-binary mrdVec.RData file.
+
 03-indexYvtomtodNew-WR.R: starting from mrdVec it creates an index to group distances and two matrices containing distances: mrdMatNew.RData (symmetric matrix of distances) and mrdDistnew.RData (lower triangular matrix of distances).
 The calculus of distances is a long process due to the number of operations, that is the reason we used the small dataset.
 
